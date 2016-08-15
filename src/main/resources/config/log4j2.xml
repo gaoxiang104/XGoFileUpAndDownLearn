@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{yyMMddHHmmss} %level{length=1} %msg%n" />
+		</Console>
+		<RollingFile name="down_c" fileName="${catalina.home}/logs/XGoFileUpAndDownLearn/down/c.log"
+			filePattern="${catalina.home}/logs/XGoFileUpAndDownLearn/down/$${date:yyMMdd}/c_%d{HHmmss}.log">
+			<PatternLayout>
+				<Pattern>%d{yyMMdd_HHmmss} %level{length=3} %msg%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="1 MB" />
+			</Policies>
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Root level="ERROR">
+			<AppenderRef ref="Console" />
+		</Root>
+		<Logger name="org.springframework" level="ERROR" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		<Logger name="down_c" level="INFO" additivity="false">
+			<AppenderRef ref="down_c"></AppenderRef>
+		</Logger>
+	</Loggers>
+</Configuration>
