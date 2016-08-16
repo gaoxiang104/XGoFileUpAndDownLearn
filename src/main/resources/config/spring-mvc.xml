@@ -12,7 +12,7 @@
 
 	<context:annotation-config />
 	<!-- 扫描controller（controller层注入） -->
-	<context:component-scan base-package="org.xgo.fileUpAndDownLearn.controller" />
+	<context:component-scan base-package="org.xgo.fileUpAndDownLearn.controller,org.xgo.fileUpAndDownLearn.service" />
 	<mvc:annotation-driven />
 
 	<!-- 避免IE在ajax请求时，返回json出现下载 -->

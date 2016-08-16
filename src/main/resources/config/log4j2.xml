@@ -4,8 +4,17 @@
 		<Console name="Console" target="SYSTEM_OUT">
 			<PatternLayout pattern="%d{yyMMddHHmmss} %level{length=1} %msg%n" />
 		</Console>
-		<RollingFile name="down_c" fileName="${catalina.home}/logs/XGoFileUpAndDownLearn/down/c.log"
-			filePattern="${catalina.home}/logs/XGoFileUpAndDownLearn/down/$${date:yyMMdd}/c_%d{HHmmss}.log">
+		<RollingFile name="down_c" fileName="${sys:catalina.home}/logs/XGoFileUpAndDownLearn/down/c.log"
+			filePattern="${sys:catalina.home}/logs/XGoFileUpAndDownLearn/down/$${date:yyMMdd}/c_%d{HHmmss}.log">
+			<PatternLayout>
+				<Pattern>%d{yyMMdd_HHmmss} %level{length=3} %msg%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="1 MB" />
+			</Policies>
+		</RollingFile>
+		<RollingFile name="upload_c" fileName="${sys:catalina.home}/logs/XGoFileUpAndDownLearn/upload/c.log"
+			filePattern="${sys:catalina.home}/logs/XGoFileUpAndDownLearn/upload/$${date:yyMMdd}/c_%d{HHmmss}.log">
 			<PatternLayout>
 				<Pattern>%d{yyMMdd_HHmmss} %level{length=3} %msg%n</Pattern>
 			</PatternLayout>
@@ -22,6 +31,9 @@
 			<AppenderRef ref="Console" />
 		</Logger>
 		<Logger name="down_c" level="INFO" additivity="false">
+			<AppenderRef ref="down_c"></AppenderRef>
+		</Logger>
+		<Logger name="upload_c" level="INFO" additivity="false">
 			<AppenderRef ref="down_c"></AppenderRef>
 		</Logger>
 	</Loggers>
